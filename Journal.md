@@ -15,3 +15,18 @@
 * Isseu für eine Erstellung einer HTML-Seite erstellen
 
 ## 16.11.2021
+* Absätze in HTML erstellen: <p>...</p>
+* Überschrift in HTML erstellt <h1>
+* HTML Grundlage in VSC erstellt: "html:5"
+* Tile in HTML einbauen 
+* HTML Grundgerüst mit den öffnenden und schließenden Tags verstehen.
+* schließende Tags haben einen führenden "/"
+
+## 19.11.202
+* Kommentar in HTML einfügen mit dem  <!--Ich bin ein KOmmentar--> einfügen, werden vom Browser nicht interpretiert, nur ignorirt
+* Repository mit Github synchroniesieren in einem mehrschrittigen Prozess
+    1. DATEi -> Autospeichern einschalte, bzw. auf speichern klicken
+    2. in VSC auf das Git- Symbol in der Leiste klicken. Die Anzahl der anstehenden Änderungen werden in einem blauen Kreis angezeigt
+    3. Eine Nachricht zu den vorgenommenen Änderungen des Quelltextes eintippen. Dann Commit-Haken klicken 
+    4. Pulll und Push auslösen, indem auf das Rädchen bzw. die Wolke ganz unten geklickt wird.
+    
