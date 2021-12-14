@@ -31,7 +31,7 @@
     4. Pulll und Push auslösen, indem auf das Rädchen bzw. die Wolke ganz unten geklickt wird.
 
 ## 26.11.2021
-
+ 
 ## 30.11.2021
  * Am Anfang der Stunde wird der eigene Webserver im Terminal gestartet. Der Befehl wird mit der Pfeiltaste "Nach oben" angezeigt und ausgeführt.
  * Im Browser wird Inhalt über die Adresse ```localhost:3000``` aufgerufen.
@@ -48,4 +48,21 @@
 ## 07.12.2021
 * Schruftfarbe in der syles.css angepasst
 * styles.css in puplic Ordner verschoben
-* 
+
+## 10.12.2021
+* verscheidene Elemente in HTML rechachieren 
+* verschiedene Elemnte in HTML stylen 
+* Gute und weniger gute Quellen unterscheiden, gut sind be
+
+## 14.12.2021
+* Bild einfügen
+* Unterschied zwischen png und jpg verstehen
+* Alt-Tag beim Bild verstehen, wenn eine eingeschränkte Person sich das Foto ansvhauen möchte, muss eine Bilderklärung her
+* Hyperlink einbauen mit <a href ...<a>
+*Target beim Hyperlink verstehen ._ blank öffnet im neuen Tap 
+
+
+
+## 14.1.2022 - K"
+* HTML
+* CSS
