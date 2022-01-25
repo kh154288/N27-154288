@@ -1,0 +1,19 @@
+/*Hannah Klöpper*/
+
+body{font-family: 'Courier New', Courier, monospace;
+    font-size:x-small;
+    color: greenyellow}
+
+table{background-color: lavender;}
+
+button{color:hotpink;
+    background-color: khaki;
+    border-radius: 10%;}
+
+a{color:green;
+font-family: Arial, Helvetica, sans-serif;}
+
+hr{border:solid #00ffff 3px;
+    background-color:#0000ff;
+    height:10px;
+    width:50px}
