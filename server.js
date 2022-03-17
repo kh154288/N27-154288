@@ -24,11 +24,12 @@ let kunde = new Kunde()
 // Die konkrete Instanz bekommt Eigenschaftswerte zugewiesen.
 
 kunde.IdKunde = 154288
-kunde.Nachname = "Müller"
-kunde.Vorname = "Pit"
-kunde.Geburtsdatum = "23.10.2000"
-kunde.Mail = "mueller@web.de"
+kunde.Nachname = "Köpi"
+kunde.Vorname = "Hannah"
+kunde.Geburtsdatum = "13.09.2005"
+kunde.Mail = "hannah@web.de"
 kunde.Kennwort = "123"
+kunde.Telefonnummer = "02877/4585"
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -137,5 +138,10 @@ meineApp.get('/about',(browserAnfrage, serverAntwort, next) => {
 // require('./Uebungen/klasseUndObjekt.js')
 
 meineApp.get('/profil',(browserAnfrage, serverAntwort, next) => {              
-    serverAntwort.render('profil.ejs', {})          
+    serverAntwort.render('profil.ejs', {
+        Vorname: kunde.Vorname,
+        Nachname: kunde.Nachname,
+        Mail: kunde.Mail, 
+        Telefonnummer: kunde.Telefonnummer
+    })          
 })
