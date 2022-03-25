@@ -9,11 +9,11 @@ class Kunde{
         this.IdKunde
         this.Nachname
         this.Vorname
-        this.Kennwort
+        this.Passwort
         this.Kontostand
         this.Geburtsdatum
         this.Mail
-        this.Telefonnumer
+        this.Telefonnummer
     }
 }
 
@@ -28,7 +28,7 @@ kunde.Nachname = "Köpi"
 kunde.Vorname = "Hannah"
 kunde.Geburtsdatum = "13.09.2005"
 kunde.Mail = "hannah@web.de"
-kunde.Kennwort = "123"
+kunde.Passwort = "123"
 kunde.Telefonnummer = "02877/4585"
 
 const express = require('express')
@@ -77,14 +77,14 @@ meineApp.post('/login',(browserAnfrage, serverAntwort, next) => {
     // an die Konstanten namens idKunde und kennwort.
 
     const idKunde = browserAnfrage.body.IdKunde
-    const kennwort = browserAnfrage.body.Kennwort
+    const passwort = browserAnfrage.body.Passwort
     
     console.log("ID des Kunden: " + idKunde)
-    console.log("Kennwort des Kunden: " + kennwort)
+    console.log("Passwort des Kunden: " + passwort)
 
     // Die Identität des Kunden wird überprüft.
     
-    if(idKunde == kunde.IdKunde && kennwort == kunde.Kennwort){
+    if(idKunde == kunde.IdKunde && passwort == kunde.Passwort){
     
         // Ein Cookie namens 'istAngemeldetAls' wird beim Browser gesetzt.
         // Der Wert des Cookies ist das in eine Zeichenkette umgewandelte Kunden-Objekt.
@@ -142,6 +142,29 @@ meineApp.get('/profil',(browserAnfrage, serverAntwort, next) => {
         Vorname: kunde.Vorname,
         Nachname: kunde.Nachname,
         Mail: kunde.Mail, 
-        Telefonnummer: kunde.Telefonnummer
+        Telefonnummer: kunde.Telefonnummer,
+        Passwort: kunde.Passwort
     })          
+})
+// sobald ser Speichern-Button auf der Profile.Seite gedrückt wird, wird die 
+// meineApp.post('profile'...) abgearbeitet
+meineApp.post('/profil',(browserAnfrage, serverAntwort, next) => {              
+    
+    // Die im Browser eingegebene Werte werden in Konstanten gespeichert
+    // Der Wert der Eigenschaft von Mail in Browser wird
+    // zugewiesen (=) an die Eigenschaft Mail des Objekts kunde
+    kunde.Mail = browserAnfrage.body.Mail
+    kunde.Telefonnummer = browserAnfrage.body.Telefonnummer
+    kunde.Passwort = browserAnfrage.body.Passwort
+    
+    console.log("Profil gespeichert.")
+   
+     serverAntwort.render('profil.ejs', {
+        Vorname: kunde.Vorname,
+        Nachname: kunde.Nachname,
+        Mail: kunde.Mail, 
+        Telefonnummer: kunde.Telefonnummer,
+        Passwort: kunde.Passwort
+    })
+    
 })

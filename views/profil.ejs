@@ -15,6 +15,7 @@
             <h1> Mein Profil</h1>            
         </div>
         <div class="navigationsleiste">
+           
             <a href="/">
                 <i class="fa fa-home fa-2x" aria-hidden="true"></i>  
             </a>
@@ -28,19 +29,21 @@
         </div>
       
         <div class="inhaltsbereich">
-       <form method="post">
-        <label for="fname">Vorname:</label><br> 
-        <input type="text" name="Vorname" readonly value=<%=Vorname%>  <br>
-        <label for="fname">Nachname:</label><br> 
-        <input type="text" name="Nachname" readonly value=<%=Nachname%> <br>
-        <label for="lname">E-Mail:</label><br>
-        <input type="email" name="Mail" value=<%=Mail%> <br>       
-        <label for="lname"> Telefonnummer:</label><br>
-        <input type="tel" name="Telefonnummer" value=<%=Telefonnummer%> <br>       
-        <button class="login" formaction="/login">Änderung speichern</button>
-    </form> 
-    
-    </div>
+            <form method="post">
+                <label for="fname">Vorname:</label><br> 
+                <input type="text" name="Vorname" readonly value=<%=Vorname%>  <br>
+                <label for="fname">Nachname:</label><br> 
+                <input type="text" name="Nachname" readonly value=<%=Nachname%> <br>
+                <label for="lname">E-Mail:</label><br>
+                <input type="email" name="Mail" value=<%=Mail%> <br>       
+                <label for="lname"> Telefonnummer:</label><br>
+                <input type="tel" name="Telefonnummer" value=<%=Telefonnummer%> <br> 
+                <label for="lname">Passwort:</label><br>
+                <input type="password" name="Passwort" value=<%=Passwort%> <br>        
+                <button class="login" formaction="/profil">Änderung speichern</button>
+                
+            </form>     
+        </div>
  
         <div class="fusszeile">
             &copy; 2022 GW21A
