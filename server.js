@@ -143,19 +143,50 @@ meineApp.get('/profil',(browserAnfrage, serverAntwort, next) => {
         Nachname: kunde.Nachname,
         Mail: kunde.Mail, 
         Telefonnummer: kunde.Telefonnummer,
-        Passwort: kunde.Passwort
+        Passwort: kunde.Passwort,
+        Erfolgsmeldung: ""
     })          
 })
 // sobald ser Speichern-Button auf der Profile.Seite gedrückt wird, wird die 
 // meineApp.post('profile'...) abgearbeitet
 meineApp.post('/profil',(browserAnfrage, serverAntwort, next) => {              
     
+    // Die Erfolgsmeldung für das Speichern der geänderten Profildaten 
+    //wird in eine lokale Variabel names Erfolgsmeldung gespeichert
+    
+    let erfolgsmeldung = ""
+
     // Die im Browser eingegebene Werte werden in Konstanten gespeichert
     // Der Wert der Eigenschaft von Mail in Browser wird
     // zugewiesen (=) an die Eigenschaft Mail des Objekts kunde
-    kunde.Mail = browserAnfrage.body.Mail
-    kunde.Telefonnummer = browserAnfrage.body.Telefonnummer
-    kunde.Passwort = browserAnfrage.body.Passwort
+    
+        if(kunde.Mail !== browserAnfrage.body.Mail){
+
+            // Wenn der Wert der Eigenschaft von kunde.Mail abweicht
+            // vom Wert der Eigenschaft Mail aus dem Browser- Formular
+            // dann wird die Erfolgsmeldung initialisiert
+
+            erfolgsmeldung = erfolgsmeldung + "Änderung der Mail erfolgreich"
+            kunde.Mail = browserAnfrage.body.Mail
+            console.log(erfolgsmeldung)
+        }
+    
+
+            if(kunde.Passwort !== browserAnfrage.body.Passwort){
+    
+                erfolgsmeldung = erfolgsmeldung + "Änderung des Passwortes erfolgreich"
+                kunde.Passwort = browserAnfrage.body.Passwort
+                console.log(erfolgsmeldung)
+            }
+        
+                if(kunde.Telefonnummer !== browserAnfrage.body.Telefonnummer){
+    
+                erfolgsmeldung = erfolgsmeldung + "Änderung der Telefonnummer erfolgreich"
+                kunde.Telefonnummer= browserAnfrage.body.Telefonnummer
+                console.log(erfolgsmeldung)
+                }
+        
+
     
     console.log("Profil gespeichert.")
    
@@ -164,7 +195,8 @@ meineApp.post('/profil',(browserAnfrage, serverAntwort, next) => {
         Nachname: kunde.Nachname,
         Mail: kunde.Mail, 
         Telefonnummer: kunde.Telefonnummer,
-        Passwort: kunde.Passwort
+        Passwort: kunde.Passwort,
+        Erfolgsmeldung: erfolgsmeldung
     })
     
 })
