@@ -17,9 +17,31 @@ class Kunde{
     }
 }
 
+class Kundenberater{
+    constructor(){
+        this.IdKundenberater
+        this.Nachname
+        this.Vorname
+        this.Telefonnummer
+        this.Mail
+        this.Filiale
+        this.Begruessung
+    }
+}
+
+class Konto{
+    constructor(){
+        this.Kontostand
+        this.IBAN
+        this.Kontoart
+        this.PIN
+    }
+}
 // Von der Kunden-Klasse wird eine konkrete Instanz gebildet. 
 
 let kunde = new Kunde()
+
+
 
 // Die konkrete Instanz bekommt Eigenschaftswerte zugewiesen.
 
@@ -44,10 +66,29 @@ const server = meineApp.listen(process.env.PORT || 3000, () => {
     console.log('Server lauscht auf Port %s', server.address().port)    
 })
 
+let kundenberater = new Kundenberater ()
+
+kundenberater.IdKundenberater = 154298
+kundenberater.Nachname = "Kiff"
+kundenberater.Vorname = "Pit"
+kundenberater.Mail = "kiff@pit.support.mail"
+kundenberater.Telefonnummer = "02877/8970"
+kundenberater.Filiale = "Berlin"
+kundenberater.Begruessung = "Hallo ich bin's dein Kundenberater!"
+
 // Die Methode meineApp.get('/' ...) wird abgearbeitet, sobald
 // der Kunde die Indexseite (localhost:3000 bzw. n27.herokuapp.com) ansurft.
 
-meineApp.get('/',(browserAnfrage, serverAntwort, next) => {              
+
+// Instanziierung eines Objektes namens konto
+let konto = new Konto() 
+
+konto.Kontostand = 10000
+konto.IBAN = "DE87656789876" // bei Buchstaben immer in "" schreiben
+konto.Kontoart = "Girokonto"
+konto.PIN = 2345
+
+meineApp.get('/' ,(browserAnfrage, serverAntwort, next) => {              
     
     // Wenn ein signierter Cookie mit Namen 'istAngemeldetAls' im Browser vorhanden ist,
     // dann ist die Prüfung wahr und die Anweisungen im Rumpf der if-Kontrollstruktur 
@@ -127,15 +168,32 @@ meineApp.get('/login',(browserAnfrage, serverAntwort, next) => {
     })          
 })
 
-// Die meineApp.post('login') wird ausgeführt, sobald der Button
-// auf dem Login-Formular gedrückt wird.
+// Wenn die About-Seite angesurft wird, wird die about-Seite zum Browser
+// zurückgegeben
+
 
 meineApp.get('/about',(browserAnfrage, serverAntwort, next) => {              
-    serverAntwort.render('about.ejs', {})          
+  
+    // Wenn der Anmelde-Cookie gesetzt ist, wird der Nutzer zur
+    // About-Seite gelenkt.
+
+    if(browserAnfrage.signedCookies['istAngemeldetAls']){
+        
+        // Die Index-Seite wird an den Browser gegeben:
+
+        serverAntwort.render('about.ejs',{})
+    }else{
+
+        // Wenn der Kunde noch nicht eigeloggt ist, soll
+        // die Loginseite an den Browser zurückgegeben werden.
+        serverAntwort.render('login.ejs', {
+            meldung : ""
+        })
+    }       
+          
 })
 
-// require('./Uebungen/ifUndElse.js')
-// require('./Uebungen/klasseUndObjekt.js')
+
 
 meineApp.get('/profil',(browserAnfrage, serverAntwort, next) => {              
     serverAntwort.render('profil.ejs', {
@@ -151,52 +209,108 @@ meineApp.get('/profil',(browserAnfrage, serverAntwort, next) => {
 // meineApp.post('profile'...) abgearbeitet
 meineApp.post('/profil',(browserAnfrage, serverAntwort, next) => {              
     
-    // Die Erfolgsmeldung für das Speichern der geänderten Profildaten 
+    
+    if(browserAnfrage.signedCookies['istAngemeldetAls']){
+        
+        // Die Index-Seite wird an den Browser gegeben:
+
+        serverAntwort.render('index.ejs',{})
+    }else{
+
+        // Wenn der Kunde noch nicht eigeloggt ist, soll
+        // die Loginseite an den Browser zurückgegeben werden.
+        serverAntwort.render('login.ejs', {
+            meldung : ""
+        })
+    }       
+    
+    // Die Erfolgs für das Speichern der geänderten Profildaten 
     //wird in eine lokale Variabel names Erfolgsmeldung gespeichert
     
     let erfolgsmeldung = ""
 
-    // Die im Browser eingegebene Werte werden in Konstanten gespeichert
-    // Der Wert der Eigenschaft von Mail in Browser wird
+    // Der Wert der Eigenschaft von Mail im Browser wird
     // zugewiesen (=) an die Eigenschaft Mail des Objekts kunde
-    
-        if(kunde.Mail !== browserAnfrage.body.Mail){
 
-            // Wenn der Wert der Eigenschaft von kunde.Mail abweicht
-            // vom Wert der Eigenschaft Mail aus dem Browser- Formular
-            // dann wird die Erfolgsmeldung initialisiert
+    if(kunde.Mail != browserAnfrage.body.Mail){
 
-            erfolgsmeldung = erfolgsmeldung + "Änderung der Mail erfolgreich"
-            kunde.Mail = browserAnfrage.body.Mail
-            console.log(erfolgsmeldung)
-        }
-    
+        // Wenn der Wert der Eigenschaft von kunde.Mail abweicht
+        // vom Wert der Eigenschaft Mail aus dem Browser-Formular,
+        // dann wird die Erfolgsmeldung initialisiert:
 
-            if(kunde.Passwort !== browserAnfrage.body.Passwort){
-    
-                erfolgsmeldung = erfolgsmeldung + "Änderung des Passwortes erfolgreich"
-                kunde.Passwort = browserAnfrage.body.Passwort
-                console.log(erfolgsmeldung)
-            }
-        
-                if(kunde.Telefonnummer !== browserAnfrage.body.Telefonnummer){
-    
-                erfolgsmeldung = erfolgsmeldung + "Änderung der Telefonnummer erfolgreich"
-                kunde.Telefonnummer= browserAnfrage.body.Telefonnummer
-                console.log(erfolgsmeldung)
-                }
-        
+        erfolgsmeldung = erfolgsmeldung + "Änderung der Mail erfolgreich. "
+        kunde.Mail = browserAnfrage.body.Mail
+        console.log(erfolgsmeldung)
+    }
 
+    if(kunde.Passwort != browserAnfrage.body.Passwort){
+
+        // Wenn der Wert der Eigenschaft von kunde.Kennwort abweicht
+        // vom Wert der Eigenschaft Kennwort aus dem Browser-Formular,
+        // dann wird die Erfolgsmeldung initialisiert:
+
+        erfolgsmeldung = erfolgsmeldung + "Änderung des Kennworts erfolgreich. "
+        kunde.Passwort = browserAnfrage.body.Passwort
+        console.log(erfolgsmeldung)
+    }
+
+    if(kunde.Telefonnummer != browserAnfrage.body.Telefonnumer){
+
+        // Wenn der Wert der Eigenschaft von kunde.Rufnummer abweicht
+        // vom Wert der Eigenschaft Rufnummer aus dem Browser-Formular,
+        // dann wird die Erfolgsmeldung initialisiert:
+
+        erfolgsmeldung = erfolgsmeldung + "Änderung der Rufnummer erfolgreich. "
+        kunde.telefonnummer = browserAnfrage.body.Telefonnummer
+        console.log(erfolgsmeldung)
+    }
     
     console.log("Profil gespeichert.")
-   
-     serverAntwort.render('profil.ejs', {
+    
+    serverAntwort.render('profil.ejs', {
         Vorname: kunde.Vorname,
         Nachname: kunde.Nachname,
-        Mail: kunde.Mail, 
-        Telefonnummer: kunde.Telefonnummer,
-        Passwort: kunde.Passwort,
+        Mail: kunde.Mail,
+        Telefonnummer: kunde.Rufnummer,
+        Passwort: kunde.Kennwort,
         Erfolgsmeldung: erfolgsmeldung
     })
-    
 })
+
+
+meineApp.get('/support',(browserAnfrage, serverAntwort, next) => {              
+    serverAntwort.render('support.ejs', {
+        Vorname: kundenberater.Vorname,
+        Nachname: kundenberater.Nachname,
+        Mail: kundenberater.Mail, 
+        Telefonnummer: kundenberater.Telefonnummer,
+        Filiale: kundenberater.Filiale,
+        Begruessung: kundenberater.Begruessung,
+        Erfolgsmeldung: ""
+    })          
+})
+
+
+meineApp.get('/KontostandAnzeigen' ,(browserAnfrage, serverAntwort, next) => {              
+    
+    // Wenn ein signierter Cookie mit Namen 'istAngemeldetAls' im Browser vorhanden ist,
+    // dann ist die Prüfung wahr und die Anweisungen im Rumpf der if-Kontrollstruktur 
+    // werden abgearbeitet.
+
+    if(browserAnfrage.signedCookies['istAngemeldetAls']){
+        
+        // Die Index-Seite wird an den Browser gegeben:
+
+        serverAntwort.render('KontostandAnzeigen.ejs',{})
+    }else{
+
+        // Wenn der Kunde noch nicht eigeloggt ist, soll
+        // die Loginseite an den Browser zurückgegeben werden.
+        serverAntwort.render('login.ejs', {
+            meldung : ""
+        })
+    }                 
+})
+
+require('./Uebungen/ifUndElse.js')
+require('./Uebungen/klasseUndObjekt.js')

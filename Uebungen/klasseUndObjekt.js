@@ -171,3 +171,5 @@ if(stand1.Einnahmen < 150){
     console.log("Der Stand hat Gewinn gemacht")
 }
 
+
+

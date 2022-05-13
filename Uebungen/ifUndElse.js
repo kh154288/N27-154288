@@ -116,3 +116,5 @@ if (einzahlung-auszahlung){
 }else{
     console.log("Der Saldo ist null")
 }
+
+console.log("KLAUSUR")
