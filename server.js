@@ -312,5 +312,6 @@ meineApp.get('/KontostandAnzeigen' ,(browserAnfrage, serverAntwort, next) => {
     }                 
 })
 
-require('./Uebungen/ifUndElse.js')
-require('./Uebungen/klasseUndObjekt.js')
+//require('./Uebungen/ifUndElse.js')
+//require('./Uebungen/klasseUndObjekt.js')
+require('./Uebungen/klausur.js')
