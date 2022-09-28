@@ -7,7 +7,7 @@
 
 .kopf{
   padding: 5px;
-  background: powderblue;
+  background: palevioletred;
 }
 
 .navigationsleiste {  
@@ -25,7 +25,7 @@
 
 .fusszeile{
   padding: 2px;
-  background: powderblue;
+  background: palevioletred;
   text-align: right;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.5em;  
@@ -54,7 +54,8 @@ input {
   padding: 14px 20px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 3vh;  
+  font-size: 3vh; 
+  border-radius: 8px; 
 }
     
 label {
@@ -105,7 +106,7 @@ h1 {
 }
   
 h2 {  
-  color: powderblue;  
+  color: palevioletred;  
   font-size: 5vw; 
   font-family: Arial, Helvetica, sans-serif;
   text-align:center;
@@ -138,3 +139,4 @@ p {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 3vw; 
 }
+

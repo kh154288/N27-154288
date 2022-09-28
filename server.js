@@ -29,14 +29,39 @@ class Kundenberater{
     }
 }
 
+// Die Klasse Konto ist der Bauplan für alle konto-Objekte
+// In der Klasse werden alle relevanten Eigenschaften definiert.
+// Die konto-Onjekte die aus dieser Klasse erzeugt werden, haben dieselben
+// Eigenschaften, aber unterschiedliche Eigenschaftswerte.
+
 class Konto{
     constructor(){
+
+        // Die relevanten Eigenschaften werden im Konstruktor aufgelistet.
+        // Eigenschaften werden immer groß geschrieben
+
         this.Kontostand
         this.IBAN
         this.Kontoart
         this.PIN
     }
 }
+
+class Kredit{
+    constructor(){
+        this.Betrag
+        this.Laufzeit
+        this.Zinssatz
+    }
+
+// Eine Funktion berechnet etwas. Im Namen der Funktion steht also immer ein Ver.
+
+    berechneGesamtkostenKreditNachEinemJahr(){
+        return this.Betrag * this.Zinssatz / 100 + this.Betrag
+    }
+}
+
+
 // Von der Kunden-Klasse wird eine konkrete Instanz gebildet. 
 
 let kunde = new Kunde()
@@ -80,13 +105,27 @@ kundenberater.Begruessung = "Hallo ich bin's dein Kundenberater!"
 // der Kunde die Indexseite (localhost:3000 bzw. n27.herokuapp.com) ansurft.
 
 
-// Instanziierung eines Objektes namens konto
+// Instanziierung eines Objektes namens konto vom Typ KOnto
+// "let konto" bedeutet, dass ein Objekt namens konto exsistieren soll.
+// Man sagt, das konto wird deklariert.
+
+// "= new Konto()" nennt man die instaziirung. Bei der Instanziierung wird 
+// Festplattenspeicher reserviert, um bei der anschließenden initalisierung konkrete
+// Eigenschaftswerte für ein Objekt zu speichern.
+
 let konto = new Konto() 
+
+// Bei der Initalisierung werden konkrete Eigenschaftswerte in die reservierten 
+// Speicherzellen geschrieben.
+
+// Die Zuweisung von Eigenschaftswerten geschieht immer von rechts nach links.
 
 konto.Kontostand = 10000
 konto.IBAN = "DE87656789876" // bei Buchstaben immer in "" schreiben
 konto.Kontoart = "Girokonto"
 konto.PIN = 2345
+
+
 
 meineApp.get('/' ,(browserAnfrage, serverAntwort, next) => {              
     
@@ -289,7 +328,8 @@ meineApp.get('/support',(browserAnfrage, serverAntwort, next) => {
         Erfolgsmeldung: ""
     })          
 })
-
+// Sobald der Button "Kontostand anzeigen" auf der Index Seite gedrückt wird, 
+// wird die meineApp.get ('/KontostandAnzeigen'-Funktion abgearbeitet)
 
 meineApp.get('/KontostandAnzeigen' ,(browserAnfrage, serverAntwort, next) => {              
     
@@ -299,15 +339,22 @@ meineApp.get('/KontostandAnzeigen' ,(browserAnfrage, serverAntwort, next) => {
 
     if(browserAnfrage.signedCookies['istAngemeldetAls']){
         
+
+
         // Die Index-Seite wird an den Browser gegeben:
 
-        serverAntwort.render('KontostandAnzeigen.ejs',{})
+        serverAntwort.render('KontostandAnzeigen.ejs',{
+            Kontostand: konto.Kontostand,
+            IBAN: konto.IBAN,
+            Kontoart: konto.Kontoart,
+            Erfolgsmeldung:""
+        })
     }else{
 
         // Wenn der Kunde noch nicht eigeloggt ist, soll
         // die Loginseite an den Browser zurückgegeben werden.
         serverAntwort.render('login.ejs', {
-            meldung : ""
+            Meldung : ""
         })
     }                 
 })
@@ -315,3 +362,18 @@ meineApp.get('/KontostandAnzeigen' ,(browserAnfrage, serverAntwort, next) => {
 //require('./Uebungen/ifUndElse.js')
 //require('./Uebungen/klasseUndObjekt.js')
 require('./Uebungen/klausur.js')
+
+meineApp.get('/kreditRechner' ,(browserAnfrage, serverAntwort, next) => {              
+    
+
+    if(browserAnfrage.signedCookies['istAngemeldetAls']){
+        
+
+        serverAntwort.render('kreditRechner.ejs',{})
+    }else{
+
+         serverAntwort.render('login.ejs', {
+            meldung : ""
+        })
+    }                 
+})
