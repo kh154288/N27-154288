@@ -10,8 +10,8 @@ console.log("Übung 1 - Prüfung auf Gleichheit")
 
 // JAVASCRIPT:
 
-let a1 = 1 // Eine Variable ( zb. a1 oder zahl 1) wird mit dem Wert 1 initialisiert
-let b1 = 2 // Eien Variable ( zb. b1 oder zahl2 ) wird mit dem Wert 2 initialisiert
+let a1 = 4 // Eine Variable ( zb. a1 oder zahl 1) wird mit dem Wert 1 initialisiert
+let b1 = 4 // Eien Variable ( zb. b1 oder zahl2 ) wird mit dem Wert 2 initialisiert
 
 if(a1 == b1){
     console.log("a1 und b1 sind gleich.")

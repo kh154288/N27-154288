@@ -359,9 +359,7 @@ meineApp.get('/KontostandAnzeigen' ,(browserAnfrage, serverAntwort, next) => {
     }                 
 })
 
-//require('./Uebungen/ifUndElse.js')
-//require('./Uebungen/klasseUndObjekt.js')
-require('./Uebungen/klausur.js')
+
 
 meineApp.get('/kreditRechner' ,(browserAnfrage, serverAntwort, next) => {              
     
@@ -377,3 +375,8 @@ meineApp.get('/kreditRechner' ,(browserAnfrage, serverAntwort, next) => {
         })
     }                 
 })
+
+
+//require('./Uebungen/ifUndElse.js')
+//require('./Uebungen/klasseUndObjekt.js')
+require('./Klausuren/20221026_klausur.js')
