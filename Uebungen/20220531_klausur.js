@@ -78,6 +78,10 @@ if(handySamsung.Preis < handyApple.Preis){
 }
 
 
+
+
+
+
 console.log("Aufgabe 4")
 // Änderung Sie für Ihre ganze Banking-App das Farbschema, indem Sie 
 // den grünen Bereich oben und den grünen Bereich unten 

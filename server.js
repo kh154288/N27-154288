@@ -72,7 +72,7 @@ dbVerbindung.query('CREATE TABLE kunde(idKunde INT(11), vorname VARCHAR(45), nac
 
         if(fehler.code == "ER_TABLE_EXISTS_ERROR"){
 
-            //... dann wird eine Fehlermdldung geloggt. 
+            //... dann wird eine Fehlermdeldung geloggt. 
 
             console.log("Tabelle kunde existiert bereits und wird nicht angelegt.")
         
@@ -84,6 +84,8 @@ dbVerbindung.query('CREATE TABLE kunde(idKunde INT(11), vorname VARCHAR(45), nac
          }
     })
 });
+
+
 
 dbVerbindung.connect(function(fehler){
   
@@ -555,7 +557,7 @@ meineApp.get('/kontostandAnzeigen',(browserAnfrage, serverAntwort, next) => {
         // Mit FROM wird die Tabelle angegeben, aus der der Result eingelesen werden soll.
         // Mit WHERE wird der Result zeilenweise aus der Tabelle gefiltert
 
-        dbVerbindung.query('SELECT iban FROM konto WHERE idKunde = 154288;', function (fehler, result) {      
+        dbVerbindung.query('SELECT * FROM konto WHERE idKunde = 154288;', function (fehler, result) {      
             console.log(result)
 
             // Die Index-Seite wird an den Browser gegeben (man sagt auch gerendert):
@@ -619,7 +621,7 @@ meineApp.post('/kontoAnlegen',(browserAnfrage, serverAntwort, next) => {
     console.log("Die zufällig generierte Kontonummer lautet " + zufaelligeKontonummer)
 
     // Die IBAN wird mit einer Node-Bibliothek namens IBAN errechnet. Die Parameter der Funktion zur Berechnung der
-    // Iban sind: Länderkennung, bankleitzahl und Kontonummer.
+    // Iban sind: Länderkennung, ankleitzahl und Kontonummer.
 
     let iban = IBAN.fromBBAN(laenderkennung, bankleitzahl + " " + zufaelligeKontonummer)
 
@@ -665,3 +667,4 @@ meineApp.post('/kontoAnlegen',(browserAnfrage, serverAntwort, next) => {
 //require('./Uebungen/klasseUndObjekt.js')
 //require('./Klausuren/20221026_klausur.js')
 //require('./Klausuren/20230111_klausur.js')
+//require('./Klausuren/20230315_klausur.js')
